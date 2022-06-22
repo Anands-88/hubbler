@@ -1,0 +1,15 @@
+{
+  "rules": [],
+  "conditions": [
+    {
+      "text": "New condition",
+      "id": 5
+    }
+  ],
+  "actions": [
+    {
+      "text": "New Action",
+      "id": 4
+    }
+  ]
+}

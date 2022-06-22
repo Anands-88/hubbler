@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+  padding:0 3%;
+  background-color:#f6f5f6;
+  font-family:sans;
+  font-size: 12px;
+}
+
+.rulesPage{
+  margin:2% 0;
+  display: flex;
+}
+
+img{
+  cursor: pointer;
+}
+
+.dots {
+  display: flex;
+  width: 8px;
+  height:12px;
+  flex-wrap: wrap;
+  gap: 1px;
+  justify-content: space-between;
+  margin:0 3%;
+}
+
+.dots > div {
+  background: rgb(203, 200, 200);
+  width: 3px;
+  height: 3px;
+  border-radius: 50px;
+}
+
+button{
+  cursor: pointer;
+}

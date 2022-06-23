@@ -29,6 +29,7 @@ export const RuleContextProvider = ({children})=>{
     }
 
     const pageType = (type) =>{
+
         setMode(type)
     }
 

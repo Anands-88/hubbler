@@ -21,7 +21,7 @@ export const AddRules = ()=>
 
     useEffect(()=>{
         let obj = {text:addedRule,id:text.index}
-        axios.put(`http://localhost:8889/rules/${text.index}`,obj)
+        axios.put(`http://localhost:8882/rules/${text.index}`,obj)
         .then(()=>{
             getRules()
         })
@@ -31,14 +31,14 @@ export const AddRules = ()=>
 
         const txt = { text:"New Rule"}
 
-        axios.post("http://localhost:8889/rules",txt)
+        axios.post("http://localhost:8882/rules",txt)
         .then(()=>{
             getRules()
         })
     }
 
     const getRules = () =>{
-        axios.get("http://localhost:8889/rules")
+        axios.get("http://localhost:8882/rules")
         .then(({data})=>{
             setRules(data)
         })
@@ -46,7 +46,7 @@ export const AddRules = ()=>
 
     const deleteRule = (id)=>{
 
-        axios.delete(`http://localhost:8889/rules/${id}`)
+        axios.delete(`http://localhost:8882/rules/${id}`)
         .then(()=>{
             getRules()
         })
@@ -58,7 +58,7 @@ export const AddRules = ()=>
     }
 
     let msg = "";
-    msg = rules.length >= 6?"* Maximum 5 rules allowed":""
+    msg = rules.length >= 5?"* Maximum 5 rules allowed":""
 
     return <div style={{width:"25%"}}>
         <div className={Styled.backStages}>
@@ -98,8 +98,8 @@ export const AddRules = ()=>
                             </div>
                         ))}
                        
-                        <button disabled={rules.length >= 6} 
-                        style={{background:rules.length>= 6?"red":""}}
+                        <button disabled={rules.length >= 5} 
+                        style={{background:rules.length>= 5?"red":""}}
                         onClick={addRule}>
                             Add New Rule
                         </button>

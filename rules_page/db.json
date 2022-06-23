@@ -1,24 +1,20 @@
 {
   "rules": [
     {
-      "text": "My rues",
-      "id": 4
-    },
-    {
-      "text": "My rules",
-      "id": 6
+      "text": "New Rule",
+      "id": 5
     }
   ],
   "conditions": [
     {
       "text": "New condition",
-      "id": 5
+      "id": 13
     }
   ],
   "actions": [
     {
       "text": "New Action",
-      "id": 4
+      "id": 5
     }
   ]
 }

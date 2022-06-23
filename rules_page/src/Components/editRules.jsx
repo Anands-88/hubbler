@@ -40,14 +40,14 @@ export const EditRules = () =>{
 
         const txt = { text:"New condition"}
 
-        axios.post("http://localhost:8889/conditions",txt)
+        axios.post("http://localhost:8882/conditions",txt)
         .then(()=>{
             getConditions()
         })
     }
 
     const getConditions = () =>{
-        axios.get("http://localhost:8889/conditions")
+        axios.get("http://localhost:8882/conditions")
         .then(({data})=>{
             setCondition(data)
         })
@@ -55,7 +55,7 @@ export const EditRules = () =>{
 
     const deleteCondition = (id)=>{
         
-        axios.delete(`http://localhost:8889/conditions/${id}`)
+        axios.delete(`http://localhost:8882/conditions/${id}`)
         .then(()=>{
             getConditions()
         })
@@ -65,14 +65,14 @@ export const EditRules = () =>{
 
         const txt = { text:"New Action"}
 
-        axios.post("http://localhost:8889/actions",txt)
+        axios.post("http://localhost:8882/actions",txt)
         .then(()=>{
             getActions()
         })
     }
 
     const getActions = () =>{
-        axios.get("http://localhost:8889/actions")
+        axios.get("http://localhost:8882/actions")
         .then(({data})=>{
             setAction(data)
         })
@@ -80,7 +80,7 @@ export const EditRules = () =>{
 
     const deleteAction = (id)=>{
         
-        axios.delete(`http://localhost:8889/actions/${id}`)
+        axios.delete(`http://localhost:8882/actions/${id}`)
         .then(()=>{
             getActions()
         })

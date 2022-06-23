@@ -1,16 +1,40 @@
-import React,{useState,useEffect} from "react"
+import React,{useState,useEffect, useContext} from "react"
 import axios from "axios"
 import Styled from "./edit.module.css"
+import { RuleContext } from "./rule_context"
 
 export const EditRules = () =>{
 
     const [condition,setCondition] = useState()
     const [action,setAction] = useState()
 
+    const [buttonName,setButtonName] = useState("");
+
+    const {newRule,text,mode} = useContext(RuleContext)
+
+    useEffect(()=>{
+        if(mode == "Done")
+        {
+            alert("Edit mode on")
+        }
+        else
+        {
+            alert("Saved")
+        }
+    },[mode])
+
+    useEffect(()=>{
+        newRule(buttonName)
+    },[buttonName])
+
     useEffect(()=>{
         getConditions()
         getActions()
     },[])
+
+    useEffect(()=>{
+        setButtonName(text.txt)
+    },[text])
 
     const addCondition = () =>{
 
@@ -30,7 +54,7 @@ export const EditRules = () =>{
     }
 
     const deleteCondition = (id)=>{
-        console.log("index",id)
+        
         axios.delete(`http://localhost:8889/conditions/${id}`)
         .then(()=>{
             getConditions()
@@ -55,11 +79,16 @@ export const EditRules = () =>{
     }
 
     const deleteAction = (id)=>{
-        console.log("index",id)
+        
         axios.delete(`http://localhost:8889/actions/${id}`)
         .then(()=>{
             getActions()
         })
+    }
+
+    if(text.txt === undefined)
+    {
+        return <div style={{transform:"translate(400px,200px)",fontSize:30}}>Click on any rules</div>
     }
 
     if(condition === undefined)
@@ -79,10 +108,12 @@ export const EditRules = () =>{
     
     return <div className={Styled.editPage}>
         <div className={Styled.editTop}>
-            <h3>Default Rule</h3>
+            <h3>{text.txt}</h3>
             <div className={Styled.editButton}>
                 <p>Button Name</p>
-                <input type="text" value="Create PO"/>
+                {mode == "Done"?<input type="text" value={buttonName} 
+                onChange={(e)=>{setButtonName(e.target.value)}}/>:
+                <input type="text" value={buttonName} disabled/>} 
             </div>
             <div className={Styled.ifAll}>
                 <div>if All

@@ -1,16 +1,31 @@
 import axios from "axios"
 import { Dots } from "./dots"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import Styled from "./leftRules.module.css"
+import { RuleContext } from "./rule_context"
 
 export const AddRules = ()=>
 {
     const [rules,setRules] = useState([])
     const [click,setClick] = useState()
+
+    const {ruleClick,addedRule,text} = useContext(RuleContext)
  
+    useEffect(()=>{
+        ruleClick(click,rules)
+    },[click])
+
     useEffect(()=>{
         getRules()
     },[])
+
+    useEffect(()=>{
+        let obj = {text:addedRule,id:text.index}
+        axios.put(`http://localhost:8889/rules/${text.index}`,obj)
+        .then(()=>{
+            getRules()
+        })
+    },[addedRule])
  
     const addRule = () =>{
 
@@ -30,7 +45,7 @@ export const AddRules = ()=>
     }
 
     const deleteRule = (id)=>{
-        console.log("index",id)
+
         axios.delete(`http://localhost:8889/rules/${id}`)
         .then(()=>{
             getRules()
